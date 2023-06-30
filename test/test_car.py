@@ -1,11 +1,10 @@
 import unittest
-from datetime import date
-from engine.nubblin_battery import Nubblinbattery
-from engine.spindler_battery import Spindlerbattery
+from battery.nubblin_battery import Nubblinbattery
+from battery.spindler_battery import Spindlerbattery
 from engine.capulet_engine import CapuletEngine
 from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine
-from datetime import datetime
+from datetime import datetime, date
 
 '''
 class TestCalliope(unittest.TestCase):
