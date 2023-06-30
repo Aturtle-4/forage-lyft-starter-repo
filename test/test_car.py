@@ -1,13 +1,13 @@
 import unittest
+from datetime import date
+from engine.nubblin_battery import Nubblinbattery
+from engine.spindler_battery import Spindlerbattery
+from engine.capulet_engine import CapuletEngine
+from engine.sternman_engine import SternmanEngine
+from engine.willoughby_engine import WilloughbyEngine
 from datetime import datetime
 
-from engine.model.calliope import Calliope
-from engine.model.glissade import Glissade
-from engine.model.palindrome import Palindrome
-from engine.model.rorschach import Rorschach
-from engine.model.thovex import Thovex
-
-
+'''
 class TestCalliope(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
@@ -183,6 +183,60 @@ class TestThovex(unittest.TestCase):
         car = Thovex(last_service_date, current_mileage, last_service_mileage)
         self.assertFalse(car.needs_service())
 
+
+if __name__ == '__main__':
+    unittest.main()
+'''
+
+class TestEngines(unittest.TestCase):
+    def test_capulet_engine_needs_service(self):
+        engine = CapuletEngine(80000, 10000)
+        self.assertTrue(engine.needs_service())
+
+    def test_capulet_engine_does_not_need_service(self):
+        engine = CapuletEngine(10000, 10000)
+        self.assertFalse(engine.needs_service())
+
+    def test_sternman_engine_needs_service(self):
+        engine = SternmanEngine(True)
+        self.assertTrue(engine.needs_service())
+
+    def test_sternman_engine_does_not_need_service(self):
+        engine = SternmanEngine(False)
+        self.assertFalse(engine.needs_service())
+
+    def test_willoughby_engine_needs_service(self):
+        engine = WilloughbyEngine(90000, 20000)
+        self.assertTrue(engine.needs_service())
+
+    def test_willoughby_engine_does_not_need_service(self):
+        engine = WilloughbyEngine(30000, 20000)
+        self.assertFalse(engine.needs_service())
+
+class TestBatteries(unittest.TestCase):
+    def test_nubbin_battery_needs_service(self):
+        current_date = datetime.today().date()
+        last_service_date = date(2019, 1, 1)
+        battery = Nubblinbattery(current_date, last_service_date)
+        self.assertTrue(battery.needs_service())
+
+    def test_nubbin_battery_does_not_need_service(self):
+        current_date = datetime.today().date()
+        last_service_date = date(2022, 1, 1)
+        battery = Nubblinbattery(current_date, last_service_date)
+        self.assertFalse(battery.needs_service())
+
+    def test_spindler_battery_needs_service(self):
+        current_date = datetime.today().date()
+        last_service_date = date(2021, 1, 1)
+        battery = Spindlerbattery(current_date, last_service_date)
+        self.assertTrue(battery.needs_service())
+
+    def test_spindler_battery_does_not_need_service(self):
+        current_date = datetime.today().date()
+        last_service_date = date(2022, 1, 1)
+        battery = Spindlerbattery(current_date, last_service_date)
+        self.assertFalse(battery.needs_service())
 
 if __name__ == '__main__':
     unittest.main()
